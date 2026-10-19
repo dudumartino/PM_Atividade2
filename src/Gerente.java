@@ -63,8 +63,15 @@ public class Gerente extends Funcionario {
 	 * @return valor total do bônus
 	 */
 	private double valorBonus() {
-		//TODO
-		return 0;
+		double bonus;
+		int projetosFeitos = 0;
+		for(Projeto projeto : projetos) {
+			if(projeto.diasAposFinalizacao()<=TEMPO_BONUS){
+				projetosFeitos++;
+			}
+		}
+		bonus = projetosFeitos*BONUS_PROJETO;
+		return bonus;
 	}
 
 	/**
@@ -74,8 +81,17 @@ public class Gerente extends Funcionario {
 	 * @return código de resultado da operação
 	 */
 	public int alocarProjeto(Projeto projeto) {
-		//TODO
-		return 0;
+		int contadorProjetos = 0;
+		for(Projeto p : projetos) {
+			if(p.diasAposFinalizacao() == -1){
+				contadorProjetos++;
+			}
+		}
+		if(contadorProjetos == 0){
+			projetos.add(projeto);
+		}
+
+		return projetos.size();
 	}
 
 	/**
